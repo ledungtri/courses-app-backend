@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+const cors = require('cors');
 import DbConnection from './db/DbConnection';
 import CoursesRoute from './routes/CoursesRoute';
 import PeopleRoute from "./routes/PeopleRoute";
@@ -10,7 +11,7 @@ const server = express();
 DbConnection.connect().then(() => {
   const serverPort = process.env.PORT || 3000;
   server.use(express.json());
-  // TODO Enable CORs
+  server.use(cors());
 
   const routers = [
     CoursesRoute,
