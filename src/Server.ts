@@ -12,9 +12,9 @@ dotenv.config();
 const server = express();
 DbConnection.connect().then(() => {
   const serverPort = process.env.PORT || 3000;
-  server.use('/graphql', graphqlHTTP({ schema: RootSchema, graphiql: true }));
   server.use(express.json());
   server.use(cors());
+  server.use('/graphql', graphqlHTTP({ schema: RootSchema, graphiql: true }));
 
   const routers = [
     CoursesRoute,
