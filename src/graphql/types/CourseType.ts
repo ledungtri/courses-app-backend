@@ -17,7 +17,9 @@ export default new GraphQLObjectType({
     group: { type: GraphQLString },
     name: {
       type: GraphQLString,
-      resolve: (parent) => `${parent.family} ${parent.level || ''}${parent.group || ''}`
+      resolve: (parent) => {
+        return `${parent.family} ${parent.level || ''}${parent.group || ''}`.trim();
+      }
     },
     location: { type: GraphQLString },
 
