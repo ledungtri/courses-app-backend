@@ -21,14 +21,11 @@ export default abstract class AbstractRoute {
   }
 
   protected validateEmptyBody(req: Request, res: Response, next: () => void) {
-    if (! AbstractRoute.isEmpty(req.body)) {
+    const isEmpty = req.body || Object.keys(req.body).length === 0
+    if (isEmpty) {
       return res.status(StatusCodes.BAD_REQUEST).json({ error: "You must specify body." });
     } else {
       next();
     }
-  }
-
-  private static isEmpty(obj: any):boolean {
-    return obj || Object.keys(obj).length === 0
   }
 }

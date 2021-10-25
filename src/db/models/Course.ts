@@ -21,18 +21,4 @@ export interface Course extends mongoose.Document {
   }
 }
 
-
-// TODO: methods
-// kittySchema.methods.speak = function () {
-//   const greeting = this.name
-//     ? "Meow name is " + this.name
-//     : "I don't have a name";
-//   console.log(greeting);
-// }
-
-// TODO: virtual
-// personSchema.virtual('fullName').get(function() {
-//   return this.name.first + ' ' + this.name.last;
-// });
-
 export default mongoose.model<Course>('Course', courseSchema);

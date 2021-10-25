@@ -5,11 +5,14 @@ import DbConnection from './db/DbConnection';
 import CoursesRoute from './routes/CoursesRoute';
 import PeopleRoute from "./routes/PeopleRoute";
 import MigrationRoute from "./migration/MigrationRoute";
+import { graphqlHTTP } from "express-graphql";
+import RootSchema from "./graphql/RootSchema";
 
 dotenv.config();
 const server = express();
 DbConnection.connect().then(() => {
   const serverPort = process.env.PORT || 3000;
+  server.use('/graphql', graphqlHTTP({ schema: RootSchema, graphiql: true }));
   server.use(express.json());
   server.use(cors());
 
