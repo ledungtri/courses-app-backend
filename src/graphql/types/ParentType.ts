@@ -9,7 +9,7 @@ export default new GraphQLObjectType({
     fullChristianName: {
       type: GraphQLString,
       resolve: (parent: Person) => {
-        return `${parent.christianName} ${parent.fullName}`.trim();
+        return parent.fullName? `${parent.christianName} ${parent.fullName}`.trim() : '';
       }
     },
     phone: { type: GraphQLString }
