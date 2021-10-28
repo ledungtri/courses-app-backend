@@ -5,6 +5,6 @@ import Person from "../../db/models/Person";
 export default {
   type: new GraphQLList(PersonType),
   resolve: () => {
-    return Person.find();
+    return Person.find().sort({ "_private.sortParam": 1 });
   }
 };
