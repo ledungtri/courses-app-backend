@@ -1,12 +1,12 @@
 import express from 'express';
+import cors from 'cors';
 import dotenv from 'dotenv';
-const cors = require('cors');
+import { graphqlHTTP } from 'express-graphql';
 import DbConnection from './db/DbConnection';
 import CoursesRoute from './routes/CoursesRoute';
-import PeopleRoute from "./routes/PeopleRoute";
-import MigrationRoute from "./migration/MigrationRoute";
-import { graphqlHTTP } from "express-graphql";
-import RootSchema from "./graphql/RootSchema";
+import PeopleRoute from './routes/PeopleRoute';
+// import MigrationRoute from "./migration/MigrationRoute";
+import RootSchema from './graphql/RootSchema';
 
 dotenv.config();
 const server = express();
