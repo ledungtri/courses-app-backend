@@ -15,7 +15,9 @@ export default new GraphQLObjectType({
         if (!parent.streetName) {
           return '';
         }
-        return `${parent.streetNumber} ${parent.streetName}${parent.ward? ', ' + parent.ward : ''}${parent.district? ', ' + parent.district : ''}`;
+        const ward = parent.ward? ', ' + parent.ward : '';
+        const district = parent.district? ', ' + parent.district : '';
+        return `${parent.streetNumber} ${parent.streetName}${ward}${district}`.trim();
       }
     }
   })
