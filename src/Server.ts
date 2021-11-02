@@ -3,8 +3,6 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { graphqlHTTP } from 'express-graphql';
 import DbConnection from './db/DbConnection';
-import CoursesRoute from './routes/CoursesRoute';
-import PeopleRoute from './routes/PeopleRoute';
 // import MigrationRoute from "./migration/MigrationRoute";
 import RootSchema from './graphql/RootSchema';
 
@@ -16,12 +14,8 @@ DbConnection.connect().then(() => {
   server.use(cors());
   server.use('/graphql', graphqlHTTP({ schema: RootSchema, graphiql: true }));
 
-  const routers = [
-    CoursesRoute,
-    PeopleRoute,
-    // MigrationRoute,
-  ];
-  routers.map((Router) => new Router(server));
+  // const routers = [MigrationRoute];
+  // routers.map((Router) => new Router(server));
 
   server.listen(serverPort, () => {
     console.log(`Server is listening on port ${serverPort}...`);
