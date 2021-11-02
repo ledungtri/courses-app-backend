@@ -39,7 +39,7 @@ export default new GraphQLObjectType({
     phone: { type: GraphQLString },
     email: { type: GraphQLString },
     address: { type: AddressType },
-    instructors: {
+    instructions: {
       type: new GraphQLList(InstructionType),
       resolve: async (parent: Person) => {
         const ids = parent.instructions.map(({courseId}: Instruction) => courseId);
@@ -48,7 +48,7 @@ export default new GraphQLObjectType({
           const instruction = parent.instructions.find(({ courseId }: Instruction) => courseId == course.id);
           const position = (instruction)? instruction.position : "";
           const year = (instruction)? instruction.year : null;
-          return {student: parent, course, year, position};
+          return {instructor: parent, course, year, position};
         });
       }
     },

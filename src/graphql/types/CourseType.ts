@@ -48,15 +48,15 @@ export default new GraphQLObjectType({
       type: GraphQLInt,
       resolve: (parent) => parent.attendances.filter(({ result }: Attendance) => result === "Lên Lớp").length
     },
-    instructors: {
+    instructions: {
       type: new GraphQLList(InstructionType),
       resolve: async (parent: Course) => {
         const ids = parent.instructions.map(({ teacherId }: Instruction) => teacherId);
-        const teachers = await Person.find({ _id: ids }).sort({ "_private.sortParam": 1 });
-        return teachers.map(teacher => {
-          const instruction = parent.instructions.find(({ teacherId }: Instruction) => teacherId == teacher.id);
+        const instructors = await Person.find({ _id: ids }).sort({ "_private.sortParam": 1 });
+        return instructors.map(instructor => {
+          const instruction = parent.instructions.find(({ teacherId }: Instruction) => teacherId == instructor.id);
           const position = (instruction)? instruction.position : "";
-          return {teacher, course: parent, year: parent.year, position};
+          return {instructor, course: parent, year: parent.year, position};
         });
       }
     },
