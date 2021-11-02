@@ -7,7 +7,7 @@ export default new GraphQLObjectType({
   name: 'Instruction',
   // @ts-ignore
   fields: () => ({
-    student: {type: PersonType},
+    instructor: {type: PersonType},
     course: {type: CourseType},
     year: {type: GraphQLInt},
     position: {type: GraphQLString}
